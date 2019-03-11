@@ -1,0 +1,128 @@
+\makeatletter
+\let\@starttocorig\@starttoc
+\makeatother%%
+
+\documentclass[10pt,xcolor={usenames},fleqn,mathserif,serif]{beamer}
+
+%%%Usefull link
+%tikz-equations:
+%http://www.wekaleamstudios.co.uk/posts/creating-a-presentation-with-latex-beamer-equations-and-tikz/
+
+%% colors
+\definecolor{bittersweet}{rgb}{1.0, 0.44, 0.37}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
+\definecolor{violetw}{rgb}{0.93, 0.51, 0.93}
+\definecolor{Veronica}{rgb}{0.63, 0.36, 0.94}
+\definecolor{atomictangerine}{rgb}{1.0, 0.6, 0.4}
+\definecolor{darkgray}{rgb}{0.66, 0.66, 0.66}
+\definecolor{brightcerulean}{rgb}{0.11, 0.67, 0.84}
+\definecolor{cadmiumorange}{rgb}{0.93, 0.53, 0.18}
+\definecolor{ochre}{rgb}{0.8, 0.47, 0.13}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{lemon}{rgb}{1.0, 0.97, 0.0}
+\definecolor{grey}{rgb}{0.7, 0.75, 0.71}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{almond}{rgb}{0.94, 0.87, 0.8}
+\definecolor{bf}{RGB}{88, 86, 88}
+\definecolor{bb}{RGB}{177, 177, 177}
+\definecolor{keyword}{rgb}{0.25, 0.25, 0.28}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% importa pacchetti
+\usepackage{usepkg}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Funzioni generali
+\usepackage{functions}
+%http://tex.stackexchange.com/questions/246/when-should-i-use-input-vs-include
+\newcommand{\setmuskip}[2]{#1=#2\relax} %%problem usinig mu with calc (req by mathtools) loaded
+\usepackage{sources}
+%\usepackage{length}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Funzioni per questo file main
+\usepackage{mathOp}
+
+%%tikz sources
+
+%%%%
+\def\status{coazione}
+\def\keeptrying{coazione}
+\usepackage{LocalF}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{beamersetup}
+%% Titolo
+\title{Interazioni fondamentali}
+
+% Let's get started
+\begin{document}
+
+\input{tikzdir}%%contain tikz files as filecontents
+
+\begin{wordonframe}{work in progress}
+
+Choose the way!!
+
+parte tools:
+    \begin{itemize}
+        \item \keyword{TODO: math elements}: funzioni speciali
+        \item \keyword{TODO: QM} 
+        \item \keyword{TODO: scattering, urti, decadimenti}
+        \item \keyword{TODO: EM relativit\'a, particelle cariche e materia}: decadimenti gamma e processo inverso
+    \end{itemize}
+
+parte forze nucleari: 
+    \begin{itemize}
+    \item \keyword{TODO: fisica nucleare}:Interazione forte. deutone, modelli di nucleo, scattering NN. 
+    \item decadimento beta
+    \item modelli nucleari
+    \item Interaione EM/nucleo
+    \end{itemize}
+    
+Parte reazioni nucleari nelle stelle:
+\begin{itemize}
+    \item Catena PP. Bi-Ciclo CNO.
+    \end{itemize}
+
+\end{wordonframe}
+
+\begin{frame}
+  \titlepage
+  \tableofcontents[onlyparts]
+
+\end{frame}
+
+% Section and subsections will appear in the presentation overview
+% and table of contents.
+%\frame{\tableofcontents[onlyparts]}
+%\begin{frame}{Argomenti}
+%  \tableofcontents[part=1,hideallsubsections%,pausesections
+%  ]
+%  % You might wish to add the option [pausesections]
+%\end{frame}
+
+\part{Intro. Viviani/Marcucci blowing}\linkdest{lezioni}
+\input{reg}
+
+\part{Reazioni nucleari nelle stelle}\linkdest{mainaims}
+\input{succo}
+
+
+\part{Forze nucleari}\linkdest{nuclearforces}
+\begin{frame}{this part toc}
+\begin{itemize}
+\item Strong force
+\end{itemize}
+\end{frame}
+\input{nuclearforces}
+
+\part{Modello standard}
+\frame{\partpage}
+\begin{frame}{this part toc}
+\begin{itemize}
+\item Catena PP
+\end{itemize}
+\end{frame}
+\input{nrstars}
+
+
+\part{List of sorted keywords}
+\listofsortedkeywords
+
+\end{document}

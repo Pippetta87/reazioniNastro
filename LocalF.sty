@@ -1,0 +1,81 @@
+\ProvidesPackage{LocalF}
+
+\newcounter{columneqc}
+\stepcounter{equation}
+\newcommand\Label[1]{&\refstepcounter{columneqc}\ (\theequation.\thecolumneqc)\ltx@label{#1}&}
+
+\newcommand{\Exp}[1]{\text{exp}\{#1\}}
+
+\newcommand{\mss}{modello solare standard}
+
+\newenvironment{errata}[1][ ]%%%% errata
+{\refstepcounter{erratac}\adderratacontent{#1}%
+\begingroup {\theerratac: #1}
+\color{grey}
+}{\vspace{5mm}\noindent\rule{0.5\textwidth}{0.4pt}\\\endgroup}
+
+\ifx\status\keeptrying
+\newenvironment{wordonframe}[1]{\begin{frame}{#1}}{\end{frame}}
+\else
+\newenvironment{wordonframe}[1]{\comment}{\endcomment}
+\fi
+
+%%% COUNTERS
+\newcounter{cherrykey}%conta le keyword totali per auto ref
+\newcounter{cherrysublist}% conta le key prima di keywordlist
+\newcommand\headinginfo[1]{%
+\addcontentsline{key-\thecherrysublist}{heading}{{#1}}%
+\addtocontents{key-\thecherrysublist}{\vspace{5pt}}}
+%% expert approach to keywords
+\makeatletter
+\newcommand\keyword[2][target-\thecherrykey]{%
+\addtocounter{cherrykey}{1}
+\noindent{%
+\color{keyword}{#2}%
+}
+\phantomsection% comment out if hyperref is not used
+\linkdest{#1}
+\addcontentsline{key-\thecherrysublist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}}
+}
+\makeatother
+  
+\makeatletter
+\newcommand{\listofkeywordsbasic}{%
+\addtocounter{cherrysublist}{1}
+  \@starttocorig{key-\thecherrysublist}
+}
+\makeatother
+\newcommand\listkeywordsname{KEYWORDS}
+\newcommand\listofkeywords{%
+\subsubsection{\listkeywordsname}\listofkeywordsbasic
+}
+
+%\def\removespaces{\catcode`\ =9 t e}% Ignore all spaces`
+\def\trim#1{\ignorespaces#1\unskip}
+
+\DTLifdbexists{ifottonove}{\DTLcleardb{ifottonove}}{\DTLnewdb{ifottonove}}% Create new/discard old list()
+\newcommand{\sortedkeyword}[2][target-\thecherrykey]{%
+%{2}\phantomsection\linkdest{#1}
+\keyword[#1]{#2}
+\DTLnewrow{ifottonove}% Create a new entry
+  \DTLnewdbentry{ifottonove}{description}{\hyperlink{#1}{#2}}% Add entry as description
+}
+
+%\newenvironment{printsortedkeyword}{%
+\newcommand{\listofsortedkeywords}{
+%\noindent\rule{2cm}{0.4pt}
+%}{%
+(Sorted)Keyword IF 18/19:
+
+\DTLsort{description}{ifottonove}% Sort list
+%\begin{itemize}%
+    \DTLforeach*{ifottonove}{\theDesc=description}{%
+%\item
+\theDesc 
+%}% Print each item
+%\end{itemize}%  
+%\noindent\rule{2cm}{0.4pt}
+}
+%\DTLifdbexists{ifottonove}{\DTLcleardb{ifottonove}}{\DTLnewdb{ifottonove}}% Create new/discard old list()
+%moved into Atbegginningsection
+}

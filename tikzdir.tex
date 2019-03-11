@@ -1,0 +1,31 @@
+
+\begin{filecontents}{coulombdistant.tex}
+
+
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    \coordinate (c) at (0,0) ;
+\draw[->] (3,0) node[above] {$\vec{k_i}= \frac{\vec{p_i}}{\hbar}$} -- (0,0) ;
+\draw[->] (0,0)--(0.5,-0.5);
+\draw (0.3,-0.2) node  {$\vec{x}'$};
+\draw[->]  (0,0)--(-2,0.5);
+\draw (-0.2,0.2) node[above] {$\vec{x}$};
+\draw[->] (0.5,-0.5) --(-2,0.5) node[above] {$\Pelectron$};
+\draw (-1.3,-0.2) node[above] {$\vec{x}-\vec{x'}$};
+\draw[black,fill=gray,opacity=0.4, rounded corners=1mm] (c) \irregularcircle{1cm}{2mm};
+
+\draw (0.5,-0.5) +(-2pt,-2pt) rectangle +(2pt,2pt) node[below] {$dQ$};
+
+\node at (0,-5) {\parbox{0.7\textwidth}{
+$dV=-e\frac{dQ}{|\vec{x}-\vec{x'}|} \Rightarrow -ze^2\int \frac{\rho_c(\vec{x'})}{|\vec{x}-\vec{x'}|}d^3x'=V(r)$\\
+$r=|\vec{x}|\gg r'=|\vec{x'}|$: 
+\lbt{|\vec{x}-\vec{x'}|\approx r-\hat{r}\cdot\vec{x'}}{\frac{1}{|\vec{x}-\vec{x'}|} \approx r}
+}};
+\node (caption) at (0,-8) {\parbox{0.8\textwidth}{\caption{Potenziale Coulombiano}\label{fig:couldistw}}};
+
+\end{tikzpicture}
+    
+\end{figure}
+
+\end{filecontents}
